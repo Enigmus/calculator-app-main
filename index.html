@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+    
+  <title>Frontend Mentor | Calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body>
+  <div class="calc">
+    <div class="calc__container">
+      <div class="calc__header">
+        <div class="calc__title">calc</div>
+        <div class="calc__theme theme">
+          <span class="theme__title">theme</span>
+          <div class="radio-box">
+            <input type="radio" name="theme" id="theme1" checked>
+            <input type="radio" name="theme" id="theme2">
+            <input type="radio" name="theme" id="theme3">
+            <div class="radio-btn"></div>
+          </div>  
+          <div class="label-block">
+            <label for="theme1" class="theme1">1</label>
+            <label for="theme2" class="theme2">2</label>
+            <label for="theme3" class="theme3">3</label>        
+          </div>
+        </div>
+      </div>
+      <div class="calc__output">0</div>
+      <div class="calc__buttons">
+        <button class="calc__btn" data-btn="7">7</button>
+        <button class="calc__btn" data-btn="8">8</button>
+        <button class="calc__btn" data-btn="9">9</button>
+        <button class="calc__btn calc__btn_del" data-btn="del">del</button>
+        <button class="calc__btn" data-btn="4">4</button>
+        <button class="calc__btn" data-btn="5">5</button>
+        <button class="calc__btn" data-btn="6">6</button>
+        <button class="calc__btn" data-btn="plus">+</button>
+        <button class="calc__btn" data-btn="1">1</button>
+        <button class="calc__btn" data-btn="2">2</button>
+        <button class="calc__btn" data-btn="3">3</button>
+        <button class="calc__btn" data-btn="minus">-</button>
+        <button class="calc__btn" data-btn=".">.</button>
+        <button class="calc__btn" data-btn="0">0</button>
+        <button class="calc__btn" data-btn="div">/</button>
+        <button class="calc__btn" data-btn="multipl">x</button>
+        <button class="calc__btn calc__btn_reset" data-btn="reset">reset</button>
+        <button class="calc__btn calc__btn_equals" data-btn="equals">=</button>
+      </div>
+    </div>
+  </div>
+
+
+  
+ <!--  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+  <script src="script.js"></script>
+</body>
+</html>
