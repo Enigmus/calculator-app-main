@@ -5,53 +5,72 @@
 }
 
 :root{
-    /*theme 1*/
-    --theme1-main-bgc: hsl(222, 26%, 31%);
-    --theme1-keypad-bgc: hsl(223, 31%, 20%);
-    --theme1-screen-bgc: hsl(224, 36%, 15%);
+    /*Theme 1*/
+    --main-bgc: hsl(222, 26%, 31%);
+    --keypad-bgc: hsl(223, 31%, 20%);
+    --screen-bgc: hsl(224, 36%, 15%);
 
-    --theme1-key-main-bgc: hsl(30, 25%, 89%);
-    --theme1-key-main-shadow: hsl(28, 16%, 65%);
+    --key-main-bgc: hsl(30, 25%, 89%);
+    --key-main-shadow: hsl(28, 16%, 65%);
 
-    --theme1-key-alt-bgc: hsl(225, 21%, 49%);
-    --theme1-key-alt-shadow: hsl(224, 28%, 35%);
-    --theme1-key-alt-hover: #a2b3e1;
+    --key-alt-bgc: hsl(225, 21%, 49%);
+    --key-alt-shadow: hsl(224, 28%, 35%);
+    --key-alt-hover: #a2b3e1;
 
-    --theme1-key-toggle-bgc: hsl(6, 63%, 50%);
-    --theme1-key-toggle-shadow: hsl(6, 70%, 34%);  
-    --theme1-key-toggle-hover: #f96c5b;
+    --key-toggle-bgc: hsl(6, 63%, 50%);
+    --key-toggle-shadow: hsl(6, 70%, 34%);  
+    --key-toggle-hover: #f96c5b;
 
-    --theme1-text-color-1: hsl(221, 14%, 31%);
-    --theme1-text-color-2: hsl(0, 0%, 100%);
-
-    /*Theme 2*/
-
-
-    --theme2-main-bgc : hsl(0, 0%, 90%);
-    --theme2-keypad-bgc : hsl(0, 5%, 81%);
-    --theme2-screen-bgc : hsl(0, 0%, 93%);
-
-    --theme2-key-main-bgc: hsl(185, 42%, 37%);
-    --theme2-key-main-shadow: hsl(185, 58%, 25%);
-
-    --theme2-key-alt-bgc: hsl(25, 98%, 40%);
-    --theme2-key-alt-shadow: hsl(25, 99%, 27%);
-
-    --theme2-key-toggle-bgc: hsl(45, 7%, 89%);
-    --theme2-key-toggle-shadow: hsl(35, 11%, 61%); 
-
-    --theme2-text-color-1: hsl(60, 10%, 19%);
-    --theme2-text-color-2: hsl(0, 0%, 100%);
-
+    --text-color-1: hsl(221, 14%, 31%);
+    --text-color-2: hsl(0, 0%, 100%);
 }
+.theme2{
+    /*Theme 2*/
+    --main-bgc : hsl(0, 0%, 90%);
+    --keypad-bgc : hsl(0, 5%, 81%);
+    --screen-bgc : hsl(0, 0%, 93%);
 
+    --key-main-bgc: hsl(45, 7%, 89%);
+    --key-main-shadow: hsl(35, 11%, 61%);
+
+    --key-alt-bgc: hsl(185, 42%, 37%);
+    --key-alt-shadow: hsl(185, 58%, 25%);
+    --key-alt-hover: #62b5bd;
+
+    --key-toggle-bgc: hsl(25, 98%, 40%);
+    --key-toggle-shadow:  hsl(25, 99%, 27%);
+    --key-toggle-hover: #ff8b38;
+
+    --text-color-1: hsl(60, 10%, 19%);
+    --text-color-2: hsl(0, 0%, 100%);
+}
+.theme3{
+    /*Theme 3*/
+    --main-bgc : hsl(268, 75%, 9%);
+    --keypad-bgc : hsl(268, 71%, 12%);
+    --screen-bgc : hsl(268, 71%, 12%);
+
+    --key-main-bgc: hsl(281, 89%, 26%);
+    --key-main-shadow:  hsl(285, 91%, 52%);
+
+    --key-alt-bgc: hsl(268, 47%, 21%);
+    --key-alt-shadow: hsl(290, 70%, 36%);
+    --key-alt-hover: #8631b0;
+
+    --key-toggle-bgc:   hsl(176, 100%, 44%);
+    --key-toggle-shadow:  hsl(177, 92%, 70%);
+    --key-toggle-hover: #94fff9;
+
+    --text-color-1: hsl(52, 100%, 62%);    
+    --text-color-2: hsl(0, 0%, 100%);
+    --text-color-3: hsl(198, 20%, 13%);
+}
 
 .radio-box {    
     position: relative;
     width: 70px;
     height: 26px;
 }
-
 
 .radio-box > input[type=radio]{
     position: absolute;
@@ -79,10 +98,11 @@
     position: relative;
     width: 70px;
     height: 26px;
-    background-color: var(--theme1-keypad-bgc);
+    background-color: var(--keypad-bgc);
     border-radius: 12px;
     z-index: 1;
 }
+
 .radio-btn:before{
     content: "";
     position: absolute;
@@ -91,8 +111,12 @@
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background-color: var(--theme1-key-toggle-bgc);
-    transition: left 0.3s ease-in;
+    background-color: var(--key-toggle-bgc);
+    transition: all 0.3s ease-in;
+}
+
+.radio-box:hover .radio-btn::before{
+    background-color: var(--key-toggle-hover);
 }
 
 .radio-box > input[type=radio]:checked + input[type=radio] + input[type=radio] + .radio-btn:before{
@@ -107,10 +131,8 @@
     left: calc(70px - 20px - 3px);
 }
 
-
-
 body{
-    background-color: var(--theme1-main-bgc);    
+    background-color: var(--main-bgc);    
     font-family: 'League Spartan', sans-serif;
     font-weight: 700;
     font-size: 32px;
@@ -124,6 +146,7 @@ body{
     justify-content: center;
     align-items: center;
 }
+
 .calc__container{
     width: 540px;
     display: flex;
@@ -131,27 +154,37 @@ body{
     justify-content: center;
     
 }
+
 .calc__container > :not(:last-child){
     margin-bottom: 25px;
 }
+
 .calc__header {
     display: flex;
     justify-content: space-between; 
-    color: var(--theme1-text-color-2);
+    color: var(--text-color-2);
 }
+
+.theme2 .calc__header, .theme3 .calc__header{
+    color: var(--text-color-1);
+}
+
 .calc__title {   
     margin-left: 8px;
 }
+
 .calc__theme {
     position: relative;
     display: flex;
     align-items: center;
 }
+
 .calc__theme span{
     text-transform: uppercase;
     font-size: 12px;
     margin-right: 25px;
 }
+
 .label-block{
     position: absolute;
     right: 0;
@@ -162,34 +195,41 @@ body{
 
     font-size: 12px;
 }
+
 .label-block label{
     cursor: pointer;
 }
 
 .calc__output {
-    background-color: var(--theme1-screen-bgc);
-    color: var(--theme1-text-color-2);    
+    background-color: var(--screen-bgc);
+    color: var(--text-color-2);    
     font-size: 38px;
     font-weight: 700;
     text-align: right;
     padding: 48px 30px 50px;
     border-radius: 6px;
 }
+
+.theme2 .calc__output, .theme3 .calc__output{
+    color: var(--text-color-1);
+}
+
 .calc__buttons {
-    background-color: var(--theme1-keypad-bgc);
+    background-color: var(--keypad-bgc);
     border-radius: 6px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
     padding: 30px;
 }
+
 .calc__btn {
     padding: 17px 0 15px;
     display: flex;
     justify-content: center;
-    background-color: var(--theme1-key-main-bgc);
-    box-shadow: 0 5px 0 0 var(--theme1-key-main-shadow);
-    color: var(--theme1-text-color-1);
+    background-color: var(--key-main-bgc);
+    box-shadow: 0 5px 0 0 var(--key-main-shadow);
+    color: var(--text-color-1);
     font-size: 32px;
     font-weight: 700;
     border-radius: 6px;
@@ -197,29 +237,37 @@ body{
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
 }
+
 .calc__btn_del {
     color: inherit;
 }
+
 .calc__btn_reset {
     grid-column: span 2;
 }
+
 .calc__btn_equals {
-    grid-column: span 2;
-    
-    background-color: var(--theme1-key-toggle-bgc);
-    box-shadow: 0 5px 0 0 var(--theme1-key-toggle-shadow);
-    color: var(--theme1-text-color-2);
+    grid-column: span 2;    
+    background-color: var(--key-toggle-bgc);
+    box-shadow: 0 5px 0 0 var(--key-toggle-shadow);
+    color: var(--text-color-2);
 }
+
+.theme3 .calc__btn_equals {
+    color: var(--text-color-3);
+}
+
 .calc__btn_equals:hover {
-    background-color: var(--theme1-key-toggle-hover);
+    background-color: var(--key-toggle-hover);
 }
 
 .calc__btn_del, .calc__btn_reset {    
     text-transform: uppercase;
-    background-color: var(--theme1-key-alt-bgc);
-    box-shadow: 0 5px 0 0 var(--theme1-key-alt-shadow);
-    color: var(--theme1-text-color-2);
+    background-color: var(--key-alt-bgc);
+    box-shadow: 0 5px 0 0 var(--key-alt-shadow);
+    color: var(--text-color-2);
 }
+
 .calc__btn_del:hover, .calc__btn_reset:hover{
-    background-color: var(--theme1-key-alt-hover);
+    background-color: var(--key-alt-hover);
 } 

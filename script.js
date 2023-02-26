@@ -1,5 +1,6 @@
 const output = document.querySelector('.calc__output');
 const buttons = document.querySelector('.calc__buttons');
+const radioBox = document.querySelector('.radio-box');
 
 const arrNumBtn = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const arrActionBtn = ['equals', 'plus', 'minus', 'div', 'multipl'];
@@ -15,6 +16,18 @@ let actionMem = '';
 
 buttons.addEventListener('click', handlerBtn);
 document.addEventListener('keydown', handlerKeys);
+radioBox.addEventListener('click', radioClick);
+
+function radioClick(){
+    const html = document.getElementsByTagName('html')[0];
+    if(document.getElementById('theme2').checked){
+        html.className = 'theme2';
+    }else if(document.getElementById('theme3').checked){
+        html.className = 'theme3';
+    }else if(document.getElementById('theme1').checked){
+        html.className = '';
+    }
+}
 
 
 function handlerBtn(event){
