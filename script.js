@@ -7,16 +7,17 @@ const arrActionBtn = ['equals', 'plus', 'minus', 'div', 'multipl'];
 
 let result = 0;
 let check = false;
-let num1 = '';
-let num2 = '';
 let actionMem = '';
-
-
+let number1 = '0';
+let number2 = '0';
+let expression = '';
 
 
 buttons.addEventListener('click', handlerBtn);
 document.addEventListener('keydown', handlerKeys);
 radioBox.addEventListener('click', radioClick);
+
+
 
 function radioClick(){
     const html = document.getElementsByTagName('html')[0];
@@ -50,81 +51,86 @@ function handlerBtn(event){
     
 }
 
-function setOutput(out){
+function setOutput(out){ 
     //Если строка пустая, выводить 0
     if(!out) out = 0;
     output.innerText = out;
 }
 
 //обработка чиловых кнопок + точка
-function numBtn(num){   
-    num2 += num; 
+function numBtn(num){ 
+    number2 += num;
     //отрезаем лишний ноль в начале строки
-    if(num2[0] === '0'){
-       num2 = num2.slice(1,1);
+     if(number2[0] == '0'){
+       number2 = number2.slice(1);
     }  
-    setOutput(num2);
+    setOutput(number2);
 }
 
 function delBtn(){
-    if(num2.length > 0){
-        num2 = num2.slice(0, -1);
+    if(number2.length > 0){
+        number2 = number2.slice(0, -1);
+        if(number2.length === 0)
+            number2 = 0;
     }
-    setOutput(num2);
+    setOutput(number2);
 
-    console.log(`num1 = ${num1}\nnum2 = ${num2}\nresult = ${result}\nactionMem = ${actionMem}`);
+    //console.log(`number1 = ${number1} | number2 = ${number2} | result = ${result} | actionMem = ${actionMem} expression = ${expression}`);
 }
 
 function resetBtn(){
     result = 0;
-    num1 = '';
-    num2 = '';
+    number1 = 0;
+    number2 = 0;
     actionMem = '';
+    expression = ''
     setOutput(result);
-   // console.log(`num1 = ${num1}\nnum2 = ${num2}\nresult = ${result}\nactionMem = ${actionMem}`);
 }
 
 function actionBtn(action){
-    if(num1 === ''){
-        num1 = num2;
-        num2 = '';
+    if(number1 === '0'){
+        number1 = number2;
+        number2 = '0';
         actionMem = action;
+
+        expression = number1 + actionMem + number2;
+        console.log(`number1 = ${number1} | number2 = ${number2} | result = ${result} | actionMem = ${actionMem} expression = ${expression}`);
     }else{
+
+    
         switch(actionMem){
             case 'plus':
-                result = Number(num1) + Number(num2);
-                nulls(action, result);
+                number1 = Number(number1) + Number(number2);
+                nulls('plus')
+                console.log(`number1 = ${number1} | number2 = ${number2} | result = ${result} | actionMem = ${actionMem} expression = ${expression}`);
                 break;
             case 'minus':
-                result = Number(num1) - Number(num2);
-                nulls(action, result);
+                result = Number(number1) - Number(number2);
                 break;
             case 'div':
-                result = Number(num1) / Number(num2);
-                nulls(action, result);
+                result = Number(number1) / Number(number2);
                 break;
             case 'multipl':
-                result = Number(num1) * Number(num2);
-                nulls(action, result);
+                result = Number(number1) * Number(number2);
                 break;
             default:
                 console.log('equals');
-                resetBtn();
-                
+                resetBtn(); 
+                               
                 break;
         }
-        setOutput(result);
-        console.log(`num1 = ${num1}\nnum2 = ${num2}\nresult = ${result}\nactionMem = ${actionMem}`);
-    }    
+        setOutput(number1);
+    }       
     
 }
 
-function nulls(action, res){
-    num1 = res;
-    num2 = '';
+function nulls(action){
+    //number1 = res;
+    number2 = '0';
     actionMem = action;
 }
 
+console.log(`number1 = ${number1} | number2 = ${number2} | result = ${result} | actionMem = ${actionMem} expression = ${expression}`);
 
 
 
@@ -139,8 +145,5 @@ function nulls(action, res){
 function handlerKeys(event){
     console.log(event)
     if(arrNumBtn.includes(event.key))
-        numBtn(event.key);12
+        numBtn(event.key);
 }
-
-
-//console.log(buttons);

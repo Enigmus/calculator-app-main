@@ -12,6 +12,7 @@
 
     --key-main-bgc: hsl(30, 25%, 89%);
     --key-main-shadow: hsl(28, 16%, 65%);
+    --key-main-hover: #ffffff;
 
     --key-alt-bgc: hsl(225, 21%, 49%);
     --key-alt-shadow: hsl(224, 28%, 35%);
@@ -32,6 +33,7 @@
 
     --key-main-bgc: hsl(45, 7%, 89%);
     --key-main-shadow: hsl(35, 11%, 61%);
+    --key-main-hover: #ffffff;
 
     --key-alt-bgc: hsl(185, 42%, 37%);
     --key-alt-shadow: hsl(185, 58%, 25%);
@@ -52,6 +54,7 @@
 
     --key-main-bgc: hsl(281, 89%, 26%);
     --key-main-shadow:  hsl(285, 91%, 52%);
+    --key-main-hover: #6b34ac;
 
     --key-alt-bgc: hsl(268, 47%, 21%);
     --key-alt-shadow: hsl(290, 70%, 36%);
@@ -236,6 +239,9 @@ body{
     border: none;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
+}
+.calc__btn:hover{
+    background-color: var(--key-main-hover);
 }
 
 .calc__btn_del {
