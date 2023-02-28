@@ -141,13 +141,13 @@ function actionSwith(action){                   //в соответствии с
             numberA = ( (a * corrNum) + (b * corrNum)) / corrNum; 
             break;
         case '-':
-            numberA = +numberA - +numberB;
+            numberA = ( (a * corrNum) - (b * corrNum)) / corrNum;
             break;
         case '*':
             numberA = ( (a * corrNum) * (b * corrNum)) / corrNum / corrNum;
             break;
         case '/': 
-            numberA = (+numberB === 0) ? 0 : +numberA / +numberB;
+            numberA = (b === 0) ? 0 : ( (a * corrNum) / (b * corrNum)) ;
             break;
     }
 }
