@@ -5,19 +5,17 @@ const radioBox = document.querySelector('.radio-box');
 const arrNumBtn = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const arrActionBtn = ['=', '+', '-', '/', '*'];
 
-let result = 0;
 let numberA = '';
 let numberB = '';
 let actionMem = '';
 let expression = '';
-
 
 buttons.addEventListener('click', handlerBtn);
 document.addEventListener('keydown', handlerKeys);
 radioBox.addEventListener('click', radioClick);
 
 
-
+//Обработка переключателя тем
 function radioClick(){
     const html = document.getElementsByTagName('html')[0];
     if(document.getElementById('theme2').checked){
@@ -29,11 +27,11 @@ function radioClick(){
     }
 }
 
-
+//обработчик нажатых кнопок
 function handlerBtn(event){
     if(event.target.nodeName === 'BUTTON'){
         const btnKey = event.target.dataset.btn;
-        //console.log(event.target.dataset.btn)
+        
         if(arrNumBtn.includes(btnKey)){
             numBtn(btnKey);
         }
@@ -50,75 +48,90 @@ function handlerBtn(event){
     
 }
 
-function setOutput(out){ 
-    //Если строка пустая, выводить 0
-    if(!out) out = 0;
-    output.innerText = out;
+//Функция вывода 
+function setOutput(out){     
+    if(!out) out = 0;                       //если строка пустая, выводить 0
+    output.innerText = out;                 //отрисовать результат
 }
 
+
+//функция обработки чисел
 function setNumber(num,btnKey){
     num += btnKey;
-    /* if(num[0] === '0')
-        num = num.slice(1); */
+    if(num.startsWith('00'))                                //Два ноля в начале заменяем на один
+        num = '0';    
     
-    setOutput(+num);
-    return +num;
-}
-
-function numBtn(btnKey){ 
-    if(numberB === '' &&  actionMem === ''){
-        numberA = setNumber(numberA, btnKey);
-    }else{
-        numberB = setNumber(numberB, btnKey);        
-    } 
-    console.log(numberA, ' - ', numberB)
-}
-
-function delBtn(){
-    if(numberB === ''){
-        numberA = deleteNum(numberA);
-    }else{
-        numberB = deleteNum(numberB);
+    if(num.indexOf('.') === 0){                             //Если нажади на точку, а в начале нет цифр, дорисовываем ноль перед точкой
+        num = '0.'
     }
-}
-
-function deleteNum(num){
-    num = String(num);
-    num = num.slice(0,-1);
-    if(num.length === 0){
-        num = 0;
+    if(num.indexOf('.', num.indexOf('.') + 1) > 0){         //Если точка есть, удалаяем все последующие нажатия на точку
+       num = deleteNum(num);
     }
-    setOutput(num);
+
+    setOutput(num);                                         
     return num;
 }
 
-function resetBtn(){
-    result = 0;
+//Функция удаления последнего символа.
+function deleteNum(num){
+    num = String(num);                      //перевободим число в строку
+    num = num.slice(0,-1);                  //удаляем посдений символ
+    if(num.length === 0){                   //если закончились символы, возвращаем 0
+        num = 0;
+    }
+    setOutput(num);                         //оотрисовываем результат
+    return num;                             //возвращаем результат
+}
+
+//Обработчик цифровых кнопок
+function numBtn(btnKey){ 
+    if(numberB === '' &&  actionMem === ''){    //если второе число пустое и не было нажания на + - * /
+        numberA = setNumber(numberA, btnKey);   //вводимое число сохраняем в numberA
+    }else{
+        numberB = setNumber(numberB, btnKey);   // иначе сохраняем numberB      
+    } 
+}
+//Обработчик кнопки Del
+function delBtn(){
+    if(numberB === ''){                         //если число NumberB пустое, то значит сейчас на экране число NumberA
+        numberA = deleteNum(numberA);           //удалаяем последние цифры из числа NumberA
+    }else{
+        numberB = deleteNum(numberB);           //иначе удалаяем последние цифры из числа NumberВ
+    }
+}
+
+
+
+//Обработчик кнопки Reset
+function resetBtn(){      
+    //Обнуляем все перменные, на дисплей выводим 0                        
     numberA = '';
     numberB = '';
     actionMem = '';
     expression = '';
     setOutput('');
-    console.log('reset')
 }
 
+//Обработчик нажатой кнопки действий + - * /
 function actionBtn(action){
-    if(action && numberB === ''){
-        actionMem = action;
-    }else if(action === '='){
-        actionBtn(actionMem);
+    if(action && numberB === ''){                   //если нажали знак действия и при этом число В пустое
+        actionMem = action;                         //то запоминаем действие в переменную actionMem
+    }else if(action === '='){                       
+        actionBtn(actionMem);                       //если нажали =, то вызываем обратчик с запомниным действием
     }else{
-        expression = numberA + ' ' + actionMem + ' ' + numberB;
-        actionSwith(actionMem);
-        numberB = '';
-        actionMem = action;
-        setOutput(numberA);        
+        expression = numberA + ' ' + actionMem + ' ' + numberB; 
+        actionSwith(actionMem);                     //вызов функции, которая вычисли выражение в соответсвии с действием, которое было в памяти
+        numberB = '';                               //обнуляем число В. 
+        actionMem = action;                         //запоминаем текущие выбранное действие
+        setOutput(numberA);                         //выводим результа на экран
+
         console.log(`numberA = ${numberA} | numberB = ${numberB} | result = ${numberA} | actionMem = ${actionMem} expression = ${expression}`);
     }     
 
 }
 
-function actionSwith(action){
+//Функция для выбора и обработки действия
+function actionSwith(action){                   //в соответствии с выбранным действием вычисляем значения выражения и записываем в число А
     switch(action){
         case '+':
             numberA = +numberA + +numberB;  
@@ -129,17 +142,23 @@ function actionSwith(action){
         case '*':
             numberA = +numberA * +numberB;
             break;
-        case '/':   
-            numberA = +numberA / +numberB;
+        case '/': 
+            numberA = (+numberB === 0) ? 0 : +numberA / +numberB;
             break;
     }
 }
 
+//Обработчик нажатия клавиш клавиатуры
 function handlerKeys(event){
     console.log(event)
-    if(arrNumBtn.includes(event.key))
-        numBtn(event.key);
-    if(event.key === '+'){
-        actionBtn('+',false);
-    }
+    if(arrNumBtn.includes(event.key))       //если нажаты числовые клавиши и .
+        numBtn(event.key);              
+    if(event.key === '+' || event.key === '-' || event.key === '*' || event.key === '/') 
+        actionBtn(event.key);                
+    if(event.key === 'Enter')
+        actionBtn('=')
+    if(event.key === 'Delete')
+        resetBtn();
+    if(event.key === 'Backspace')
+        delBtn();
 }
