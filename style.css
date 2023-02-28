@@ -69,6 +69,144 @@
     --text-color-3: hsl(198, 20%, 13%);
 }
 
+body{
+    background-color: var(--main-bgc);    
+    font-family: 'League Spartan', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    height: 100vh; 
+    padding: 0 5px;  
+}
+
+/*Calculater*/
+.calc {
+    display: flex;
+    width: 100%;
+    padding-top: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.calc__container{
+    width: 540px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.calc__container > :not(:last-child){
+    margin-bottom: 25px;
+}
+
+.calc__header {
+    display: flex;
+    justify-content: space-between; 
+    color: var(--text-color-2);
+}
+
+.theme2 .calc__header, .theme3 .calc__header{
+    color: var(--text-color-1);
+}
+
+.calc__title {   
+    margin-left: 8px;
+}
+
+.calc__theme {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.calc__theme span{
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-right: 25px;
+}
+
+.calc__output {
+    background-color: var(--screen-bgc);
+    color: var(--text-color-2);    
+    font-size: 38px;
+    font-weight: 700;
+    text-align: right;
+    padding: 48px 30px 50px;
+    border-radius: 6px;
+}
+
+.theme2 .calc__output, .theme3 .calc__output{
+    color: var(--text-color-1);
+}
+
+.calc__buttons {
+    background-color: var(--keypad-bgc);
+    border-radius: 6px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    padding: 30px;
+}
+@media (max-width: 640px){
+    .calc__buttons{
+        gap: 20px;
+        padding: 15px;
+    }
+}
+
+.calc__btn {
+    padding: 17px 0 15px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--key-main-bgc);
+    box-shadow: 0 5px 0 0 var(--key-main-shadow);
+    color: var(--text-color-1);
+    font-size: 32px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+.calc__btn:hover{
+    background-color: var(--key-main-hover);
+}
+
+.calc__btn_del {
+    color: inherit;
+}
+
+.calc__btn_reset {
+    grid-column: span 2;
+}
+
+.calc__btn_equals {
+    grid-column: span 2;    
+    background-color: var(--key-toggle-bgc);
+    box-shadow: 0 5px 0 0 var(--key-toggle-shadow);
+    color: var(--text-color-2);
+}
+
+.theme3 .calc__btn_equals {
+    color: var(--text-color-3);
+}
+
+.calc__btn_equals:hover {
+    background-color: var(--key-toggle-hover);
+}
+
+.calc__btn_del, .calc__btn_reset {    
+    text-transform: uppercase;
+    background-color: var(--key-alt-bgc);
+    box-shadow: 0 5px 0 0 var(--key-alt-shadow);
+    color: var(--text-color-2);
+}
+
+.calc__btn_del:hover, .calc__btn_reset:hover{
+    background-color: var(--key-alt-hover);
+} 
+
+/*Theme switcher*/
 .radio-box {    
     position: relative;
     width: 70px;
@@ -134,60 +272,6 @@
     left: calc(70px - 20px - 3px);
 }
 
-body{
-    background-color: var(--main-bgc);    
-    font-family: 'League Spartan', sans-serif;
-    font-weight: 700;
-    font-size: 32px;
-}
-
-.calc {
-    display: flex;
-    width: 100vw;
-   /* height: 95vh;*/
-   margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-}
-
-.calc__container{
-    width: 540px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-}
-
-.calc__container > :not(:last-child){
-    margin-bottom: 25px;
-}
-
-.calc__header {
-    display: flex;
-    justify-content: space-between; 
-    color: var(--text-color-2);
-}
-
-.theme2 .calc__header, .theme3 .calc__header{
-    color: var(--text-color-1);
-}
-
-.calc__title {   
-    margin-left: 8px;
-}
-
-.calc__theme {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.calc__theme span{
-    text-transform: uppercase;
-    font-size: 12px;
-    margin-right: 25px;
-}
-
 .label-block{
     position: absolute;
     right: 0;
@@ -195,85 +279,19 @@ body{
     width: 70px;
     display: flex;
     justify-content: space-around;
-
     font-size: 12px;
 }
 
 .label-block label{
     cursor: pointer;
 }
+/***************************************************************************/
 
-.calc__output {
-    background-color: var(--screen-bgc);
-    color: var(--text-color-2);    
-    font-size: 38px;
-    font-weight: 700;
-    text-align: right;
-    padding: 48px 30px 50px;
-    border-radius: 6px;
+.attribution {
+    margin-top: 5px;
+    font-size: 11px; 
+    text-align: center;
 }
-
-.theme2 .calc__output, .theme3 .calc__output{
-    color: var(--text-color-1);
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
 }
-
-.calc__buttons {
-    background-color: var(--keypad-bgc);
-    border-radius: 6px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    padding: 30px;
-}
-
-.calc__btn {
-    padding: 17px 0 15px;
-    display: flex;
-    justify-content: center;
-    background-color: var(--key-main-bgc);
-    box-shadow: 0 5px 0 0 var(--key-main-shadow);
-    color: var(--text-color-1);
-    font-size: 32px;
-    font-weight: 700;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-.calc__btn:hover{
-    background-color: var(--key-main-hover);
-}
-
-.calc__btn_del {
-    color: inherit;
-}
-
-.calc__btn_reset {
-    grid-column: span 2;
-}
-
-.calc__btn_equals {
-    grid-column: span 2;    
-    background-color: var(--key-toggle-bgc);
-    box-shadow: 0 5px 0 0 var(--key-toggle-shadow);
-    color: var(--text-color-2);
-}
-
-.theme3 .calc__btn_equals {
-    color: var(--text-color-3);
-}
-
-.calc__btn_equals:hover {
-    background-color: var(--key-toggle-hover);
-}
-
-.calc__btn_del, .calc__btn_reset {    
-    text-transform: uppercase;
-    background-color: var(--key-alt-bgc);
-    box-shadow: 0 5px 0 0 var(--key-alt-shadow);
-    color: var(--text-color-2);
-}
-
-.calc__btn_del:hover, .calc__btn_reset:hover{
-    background-color: var(--key-alt-hover);
-} 
