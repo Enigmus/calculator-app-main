@@ -132,15 +132,19 @@ function actionBtn(action){
 
 //Функция для выбора и обработки действия
 function actionSwith(action){                   //в соответствии с выбранным действием вычисляем значения выражения и записываем в число А
-    switch(action){
-        case '+':
-            numberA = +numberA + +numberB;  
+    let corrNum = correctiveNum(numberA, numberB);
+    let a = +numberA;
+    let b = +numberB;
+
+    switch(action){        
+        case '+':                      
+            numberA = ( (a * corrNum) + (b * corrNum)) / corrNum; 
             break;
         case '-':
             numberA = +numberA - +numberB;
             break;
         case '*':
-            numberA = +numberA * +numberB;
+            numberA = ( (a * corrNum) * (b * corrNum)) / corrNum / corrNum;
             break;
         case '/': 
             numberA = (+numberB === 0) ? 0 : +numberA / +numberB;
@@ -161,4 +165,25 @@ function handlerKeys(event){
         resetBtn();
     if(event.key === 'Backspace')
         delBtn();
+}
+
+//Функция определения количетсва чисел после точки в десятичном числе
+function quantityNumbersAfterDot(num){
+    num = String(num);
+    let dot = num.indexOf('.');
+    if(dot > 0){
+        return num.length - num.indexOf('.') - 1;           //Вернет количество числе после точки
+    }
+    return -1;                                              //Вернет -1, если число целое         
+}
+
+//Функция определиния число для корректировки вычисления
+function correctiveNum(a,b){                                //Принимаем два числа
+    let lA = quantityNumbersAfterDot(a);                    //Получаем для каждого числа количествл знаков
+    let lB = quantityNumbersAfterDot(b);                    // после точки
+    let maxL = Math.max(lA, lB);                            //Определяем у какого числа только знаков
+    let numDiv = '1';                                       //Корректирующее число    
+    numDiv = numDiv.padEnd(maxL + 1,'0');                   //Формируем число, долняя его необходимым количеством нолей
+    console.log(numDiv);
+    return +numDiv;                                          //возвращаем корректирующее число
 }
