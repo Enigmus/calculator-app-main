@@ -58,8 +58,8 @@ function setOutput(out){
 //функция обработки чисел
 function setNumber(num,btnKey){
     num += btnKey;
-    if(num.startsWith('00'))                                //Два ноля в начале заменяем на один
-        num = '0';    
+    if(num[0] === '0' && num[1] != '.')                     //Удаляем лишний ноль в начале числа
+        num = num.slice(1, 1);    
     
     if(num.indexOf('.') === 0){                             //Если нажади на точку, а в начале нет цифр, дорисовываем ноль перед точкой
         num = '0.'
